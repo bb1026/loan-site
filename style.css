@@ -8,38 +8,43 @@ body {
 .container {
   max-width: 500px;
   background: #fff;
-  margin: 60px auto 20px auto;
+  margin: 40px auto;
   padding: 20px;
   border-radius: 8px;
   text-align: center;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-input[type="file"] {
-  margin: 20px 0;
+input, select {
+  width: 90%;
+  margin: 10px 0;
+  padding: 8px;
 }
 
 button {
-  background-color: #007BFF;
+  width: 95%;
+  background: #007BFF;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 10px;
   font-size: 16px;
+  margin-top: 20px;
   border-radius: 4px;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background: #0056b3;
 }
 
-.link {
+.result {
   margin-top: 20px;
-  word-break: break-word;
+  text-align: left;
+  font-size: 15px;
 }
 
 .ad {
   margin-top: 40px;
-  color: gray;
   font-size: 14px;
+  color: gray;
 }
