@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>房贷计算器</title>
+  <title>房贷计算器（支持组合贷款与提前还款）</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -10,33 +10,102 @@
 
 <div class="container">
   <h2>房贷计算器</h2>
-  <p>支持等额本息 / 等额本金</p>
 
-  <label>房屋总价（万元）</label>
-  <input type="number" id="price" placeholder="例如：100">
+  <label>贷款类型</label>
+  <div class="custom-select">
+    <select id="loanType">
+      <option value="commercial">商业贷款</option>
+      <option value="provident">公积金贷款</option>
+      <option value="combined">组合贷款</option>
+    </select>
+  </div>
 
-  <label>首付比例（%）</label>
-  <input type="number" id="downPayment" value="30">
+  <!-- 商业贷款 -->
+  <div id="loanInputs">
+    <label>贷款金额（万元）</label>
+    <input type="number" id="loanAmount" placeholder="例如：80">
+
+    <label>年利率（%）</label>
+    <input type="number" id="rate" value="4.9">
+  </div>
+
+  <!-- 公积金贷款 -->
+  <div id="providentLoanInputs" style="display:none;">
+    <label>贷款金额（万元）</label>
+    <input type="number" id="providentOnlyAmount" placeholder="例如：80">
+
+    <label>公积金贷款利率（%）</label>
+    <input type="number" id="providentOnlyRate" value="3.25">
+  </div>
+
+  <!-- 组合贷款 -->
+  <div id="combinedLoanInputs" style="display:none;">
+    <label>商业贷款金额（万元）</label>
+    <input type="number" id="commercialAmount" placeholder="例如：50">
+
+    <label>商业贷款利率（%）</label>
+    <input type="number" id="commercialRate" value="4.9">
+
+    <label>公积金贷款金额（万元）</label>
+    <input type="number" id="providentAmount" placeholder="例如：30">
+
+    <label>公积金贷款利率（%）</label>
+    <input type="number" id="providentRate" value="3.25">
+  </div>
 
   <label>贷款年限（年）</label>
   <input type="number" id="years" value="30">
 
-  <label>年利率（%）</label>
-  <input type="number" id="rate" value="4.9">
-
   <label>还款方式</label>
-  <select id="method">
-    <option value="equalPrincipalAndInterest">等额本息</option>
-    <option value="equalPrincipal">等额本金</option>
-  </select>
+  <div class="custom-select">
+    <select id="method">
+      <option value="equalPrincipalAndInterest">等额本息</option>
+      <option value="equalPrincipal">等额本金</option>
+    </select>
+  </div>
+
+  <label>开始还款日期（可选）</label>
+  <input type="date" id="startDate">
+
+  <div id="prepaySection" class="disabled">
+    <label>提前还款金额（元）</label>
+    <input type="number" id="prepayAmount" placeholder="请输入提前还款金额" disabled>
+
+    <label>提前还款日期</label>
+    <input type="date" id="prepayDate" disabled>
+
+    <button id="addPrepayBtn" type="button" disabled>添加提前还款</button>
+
+    <div id="prepayList">
+      <strong>提前还款记录：</strong>
+      <ul id="prepayRecords"></ul>
+    </div>
+  </div>
 
   <button id="calcBtn">开始计算</button>
 
   <div id="result" class="result"></div>
+</div>
 
-  <div class="ad">
-    <!-- 广告位（Google AdSense 可放这里） -->
-    广告区域
+<!-- 帮助按钮 -->
+<button id="helpBtn" class="help-button">帮助</button>
+
+<!-- 帮助弹窗 -->
+<div id="helpModal" class="modal">
+  <div class="modal-content">
+    <span id="closeHelp" class="close">&times;</span>
+    <h3>网站介绍</h3>
+    <p>这是一个房贷计算工具，支持商业贷款、公积金贷款、组合贷款。</p>
+    <p>支持输入贷款金额、利率、贷款年限，并可选择开始还款日期与多次提前还款，计算详细的还款计划（每月总额、本金、利息）。</p>
+    <p>主要功能：</p>
+    <ul>
+      <li>商业贷款、公积金贷款、组合贷款独立支持</li>
+      <li>支持等额本息、等额本金</li>
+      <li>支持开始还款日期设置</li>
+      <li>支持多次提前还款</li>
+      <li>提供详细到每月的还款计划表</li>
+    </ul>
+    <p>请根据自身情况填写后点击“开始计算”查看还款计划。</p>
   </div>
 </div>
 
