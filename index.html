@@ -109,6 +109,20 @@
   </div>
 </div>
 
-<script src="main.js"></script>
+<footer style="text-align:center; font-size:13px; margin:20px 0;">
+  <a href="#" onclick="openInfo('disclaimer'); return false;">免责声明</a> |
+  <a href="#" onclick="openInfo('privacy'); return false;">隐私政策</a> |
+  <a href="#" onclick="openInfo('contact'); return false;">联系我们</a>
+</footer>
+
+<!-- 弹窗 -->
+<div id="infoModal" class="modal">
+  <div class="modal-content">
+    <span id="closeInfo" class="close">&times;</span>
+    <div id="infoContent"></div>
+  </div>
+</div>
+
+<script src="loan.js"></script>
 </body>
 </html>
